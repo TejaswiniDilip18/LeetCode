@@ -8,11 +8,20 @@ public:
 
         transform(s.begin(), s.end(), s.begin(), [](unsigned char c){return std::tolower(c);});
 
-        s_new = s;
-        reverse(s_new.begin(), s_new.end());
+        // s_new = s;
+        // reverse(s_new.begin(), s_new.end());
 
-        if(s == s_new) return true;
-        else return false;
+        // if(s == s_new) return true;
+        // else return false;
 
+        auto l = s.begin();
+        auto r = s.end() - 1;
+
+        while(l<r){
+            if(*l != *r) return false;
+            l++;
+            r--;
+        }
+        return true;
     }
 };
