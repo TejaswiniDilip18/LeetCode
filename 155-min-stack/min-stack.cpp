@@ -1,14 +1,13 @@
 class MinStack {
-public:
+private:
     stack<int> mystack;
     stack<int> minstack;
 
-    MinStack() {     
-    }
+public:
+    MinStack() {}
     
     void push(int val) {
         mystack.push(val);
-
         if(minstack.empty() || val <= minstack.top()){
             minstack.push(val);
         }
