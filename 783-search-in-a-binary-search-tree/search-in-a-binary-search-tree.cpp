@@ -16,12 +16,10 @@ public:
             return root;
         }
         else if(val < root->val){
-            root = searchBST(root->left, val);
+            return searchBST(root->left, val);
         }
-        else if(val > root->val){
-            root = searchBST(root->right, val);
+        else{
+            return searchBST(root->right, val);
         }
-
-        return root;
     }
 };
