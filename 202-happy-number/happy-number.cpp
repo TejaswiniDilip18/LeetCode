@@ -11,6 +11,22 @@ public:
 
         return sum;
     }
+
+    // USING TWO-POINTER METHOD
+    bool isHappy(int n) {
+        int slow = n;
+        int fast = squareSum(n);
+
+        while(fast!=1 && slow != fast){
+            slow = squareSum(slow);
+            fast = squareSum(squareSum(fast));
+        }
+
+        return fast == 1;
+    }
+
+
+    /* USING HASH-MAP
     bool isHappy(int n) {
         unordered_map<int, int> visit_map;
 
@@ -24,4 +40,5 @@ public:
         }
         return false;
     }
+    */
 };
