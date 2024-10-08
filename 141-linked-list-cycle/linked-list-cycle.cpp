@@ -12,9 +12,7 @@ public:
         ListNode* slow = head;
         ListNode* fast = head;
 
-        if(head == nullptr ){
-            return false;
-        }
+        if(!head) return false;
 
         while(slow && fast && fast->next){
             slow = slow->next;
@@ -23,6 +21,6 @@ public:
             if(slow == fast) return true;
         }
 
-        return false;        
+        return false;
     }
 };
