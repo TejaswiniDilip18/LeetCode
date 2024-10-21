@@ -35,9 +35,6 @@ public:
             result.push_back(currentLevelNodes);
         }
 
-        // for(auto it = result.rbegin(); it != result.rend(); it++){
-        //     revResult.push_back(*it);
-        // }
         reverse(result.begin(), result.end());
         return result;
     }
