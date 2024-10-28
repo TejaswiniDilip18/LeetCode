@@ -16,26 +16,23 @@ public:
         if(!root) return result;
 
         std::queue<TreeNode*> q;
-
         q.push(root);
 
         while(!q.empty()){
-            int levelSize = q.size();
-            vector<int> currentLevelNodes;
-
-            for(int i =0; i<levelSize; i++){
+            int level = q.size();
+            vector<int> currLevel;
+            for(int i=0; i<level; i++){
                 TreeNode* currentNode = q.front();
                 q.pop();
 
-                currentLevelNodes.push_back(currentNode->val);
-
                 if(currentNode->left) q.push(currentNode->left);
                 if(currentNode->right) q.push(currentNode->right);
+
+                currLevel.push_back(currentNode->val);
             }
-
-            result.push_back(currentLevelNodes);
-
+            result.push_back(currLevel);
         }
+
         return result;
     }
 };
