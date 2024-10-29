@@ -16,12 +16,13 @@ public:
             }
         }
 
-        int minutes=0;
+        if(freshOranges==0) return 0;
+
+        int minutes=-1;
         vector<std::pair<int,int>> directions = {{-1,0}, {0,-1}, {0, 1}, {1, 0}};
 
         while(!rottenOranges.empty()){
             int level = rottenOranges.size();
-            bool madeProgress = false;
 
             for(int i=0; i<level; i++){
                 auto [row, col] = rottenOranges.front();
@@ -35,11 +36,10 @@ public:
                         grid[newRow][newCol] = 2;
                         freshOranges--;
                         rottenOranges.push({newRow,newCol});
-                        madeProgress = true;
                     }
                 }
             }
-            if(madeProgress) minutes++;
+            minutes++;
         }
 
         return freshOranges==0 ? minutes : -1;
