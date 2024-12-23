@@ -1,8 +1,9 @@
 class NumArray {
-private:
-    vector<int> prefixSum;
+// private:
+//     vector<int> prefixSum;
     
 public:
+    vector<int> prefixSum;
     NumArray(vector<int>& nums) {
         prefixSum.resize(nums.size()+1, 0);
         
