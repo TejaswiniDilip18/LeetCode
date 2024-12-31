@@ -1,9 +1,9 @@
 class Solution {
 public:
     int findMaxLength(vector<int>& nums) {
-        if(nums.size()==1){
-            return 0;
-        }
+        // if(nums.size()==1){
+        //     return 0;
+        // }
 
         std::unordered_map<int, int> prefix_map;
         prefix_map[0] = -1; 
