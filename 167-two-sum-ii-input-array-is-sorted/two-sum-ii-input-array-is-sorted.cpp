@@ -1,16 +1,26 @@
 class Solution {
 public:
     vector<int> twoSum(vector<int>& numbers, int target) {
-        int l = 0;
-        int r = size(numbers)-1;
+        int size = numbers.size();
+        int left = 0;
+        int right = size-1;
 
-        while(r>l){
-            if( numbers[r] + numbers[l] == target){
-                return {l+1,r+1};
+        
+
+        while(right > left){
+            int sum = numbers[left] + numbers[right];
+            // cout<<sum<<endl;
+
+            if(target==sum){
+                return {left+1, right+1};
             }
-            else if(numbers[r] + numbers[l] > target) {r--;}
-            else {l++;}
+            else if(target < sum){
+                right--;
+            }
+            else{
+                left++;
+            }
         }
-        return {-1, -1};
+        return {-1,-1};
     }
 };
