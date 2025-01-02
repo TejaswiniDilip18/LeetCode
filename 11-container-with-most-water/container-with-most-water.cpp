@@ -8,7 +8,7 @@ public:
         while(left < right){
             max_area = max(max_area, (min(height[left], height[right]) * (right - left)));
 
-            if(height[left] <= height[right]) left++;
+            if(height[left] < height[right]) left++;
             else right--;
         }
         return max_area;
