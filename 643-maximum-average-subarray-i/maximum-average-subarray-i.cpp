@@ -14,6 +14,6 @@ public:
             max_sum = max(max_sum, curr_sum);
         }
 
-        return static_cast<double>(max_sum) / k;
+        return static_cast<double>(max_sum) / double(k);
     }
 };
