@@ -1,44 +1,25 @@
 class Solution {
 public:
-    int squareSum(int n){
+    int squaredSum(int n){
         int sum = 0;
-
         while(n>0){
             int digit = n%10;
             sum += (digit*digit);
             n = n/10;
         }
-
         return sum;
     }
-
-    // USING TWO-POINTER METHOD
     bool isHappy(int n) {
-        int slow = n;
-        int fast = squareSum(n);
+        unordered_map<int,int> map;
 
-        while(fast!=1 && slow != fast){
-            slow = squareSum(slow);
-            fast = squareSum(squareSum(fast));
-        }
+        while(map.find(n)==map.end()){
+            int new_sum = squaredSum(n);
+            map[n] = new_sum;
 
-        return fast == 1;
+            if(new_sum==1) return true;
+
+            n = new_sum;
+        }   
+        return false;             
     }
-
-
-    /* USING HASH-MAP
-    bool isHappy(int n) {
-        unordered_map<int, int> visit_map;
-
-        // while we haven't visited the sum already
-        while(!(visit_map.find(n) != visit_map.end())){
-
-            visit_map[n] = true;
-
-            n = squareSum(n);
-            if(n == 1) return true;  
-        }
-        return false;
-    }
-    */
 };
