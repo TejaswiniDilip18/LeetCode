@@ -3,7 +3,6 @@ public:
     int findKthLargest(vector<int>& nums, int k) {
         std:priority_queue<int, vector<int>, greater<int>> minHeap;
 
-        
         for(int n: nums){
             minHeap.push(n);
             if(minHeap.size() > k) minHeap.pop();
