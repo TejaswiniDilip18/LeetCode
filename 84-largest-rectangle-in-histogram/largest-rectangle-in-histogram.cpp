@@ -2,9 +2,10 @@ class Solution {
 public:
     int largestRectangleArea(vector<int>& heights) {
         int h = heights.size();
-        // if(h==1){
-        //     return heights[0];
-        // }
+        
+        if(h==1){
+            return heights[0];
+        }
 
         int area = INT_MIN;
         stack<int> prevSmall, nextSmall;
