@@ -1,31 +1,28 @@
 class Solution {
 public:
     vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {
-        std::unordered_map<int, int> num_map;
-        std::stack<int> num_stack;
+        vector<int> result(nums1.size(), -1);
+        unordered_map<int,int> greaterMap;
+        stack<int> st;
 
-        for(int i= nums2.size()-1; i>=0; i--){
-            // if top of stack is smaller than the array element, pop it
-            while(!num_stack.empty() && num_stack.top()<=nums2[i]){
-                num_stack.pop();
+        for(int j= nums2.size()-1; j>=0; j--){
+            while(!st.empty() && st.top()<= nums2[j]){
+                st.pop();
             }
+            if(st.empty()){
+                greaterMap[nums2[j]] = -1;
+            }
+            else greaterMap[nums2[j]] = st.top();
 
-            // top of stack is greater than array element
-            if(!num_stack.empty()){
-                num_map[nums2[i]] = num_stack.top();
-            }
-            else{
-                num_map[nums2[i]] = -1;
-            }
-
-            num_stack.push(nums2[i]);
+            st.push(nums2[j]);
         }
 
-        std::vector<int> result(nums1.size());
         for(int i=0; i<nums1.size(); i++){
-            result[i] = num_map[nums1[i]];
+            if(greaterMap.find(nums1[i]) != greaterMap.end()){
+                result[i] = greaterMap[nums1[i]];
+            }
         }
-
+        
         return result;
     }
 };
