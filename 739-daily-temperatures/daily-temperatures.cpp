@@ -9,7 +9,7 @@ public:
             while(!s.empty() && temperatures[s.top()] <= temperatures[i]){
                 s.pop();
             }
-            if(!s.empty() && temperatures[s.top()] > temperatures[i]){
+            if(!s.empty()){
                 answer[i] = s.top() - i;
             }
             s.push(i);
