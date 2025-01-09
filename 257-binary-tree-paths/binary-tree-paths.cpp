@@ -12,10 +12,11 @@
 class Solution {
 public:
     void dfs(TreeNode* root, string currentPath, vector<string>& result){
-        if(root==nullptr) return;
+        if(!root) return;
 
-        currentPath += to_string(root->val);
-        if(root->left==nullptr && root->right==nullptr){
+        currentPath +=to_string(root->val);
+
+        if(!root->left && !root->right){
             result.push_back(currentPath);
         }
         else{
@@ -24,11 +25,13 @@ public:
             if(root->right) dfs(root->right, currentPath, result);
         }
     }
-    vector<string> binaryTreePaths(TreeNode* root) {
-        vector<string> result;
-        if(root==nullptr) return result;
 
-        dfs(root, "", result);
+    vector<string> binaryTreePaths(TreeNode* root) {
+        
+        vector<string> result;
+        if(!root) return result;
+
+        dfs(root, "",result);
 
         return result;
     }
