@@ -11,19 +11,19 @@
  */
 class Solution {
 public:
-    int maxSum = INT_MIN;
-    int postOrderSum(TreeNode* root){
+    int getPathSum(TreeNode* root, int& maxSum){
         if(!root) return 0;
 
-        int rightSum = max(postOrderSum(root->right), 0);
-        int leftSum = max(postOrderSum(root->left), 0);
+        int rightSum = max(0, getPathSum(root->right, maxSum));
+        int leftSum = max(0, getPathSum(root->left, maxSum));
 
-        maxSum = max(maxSum, (rightSum+leftSum+root->val));     
+        maxSum = max(maxSum, (root->val + leftSum + rightSum)); 
 
-        return root->val+max(rightSum, leftSum); 
+        return (root->val + max(rightSum, leftSum));
     }
     int maxPathSum(TreeNode* root) {
-        postOrderSum(root);
-        return maxSum;                
+        int maxSum = INT_MIN;
+        getPathSum(root, maxSum);
+        return maxSum;
     }
 };
