@@ -3,45 +3,46 @@ public:
     int orangesRotting(vector<vector<int>>& grid) {
         int rows = grid.size();
         int cols = grid[0].size();
+        int time = -1;
         int freshOranges = 0;
 
-        std::queue<std::pair<int,int>> rottenOranges;
+        queue<pair<int, int>> rottenOranges;
 
         for(int i=0; i<rows; i++){
             for(int j=0; j<cols; j++){
                 if(grid[i][j]==2){
                     rottenOranges.push({i,j});
                 }
-                else if(grid[i][j]==1) freshOranges++;
+                else if(grid[i][j]==1)
+                    freshOranges++;
             }
         }
 
         if(freshOranges==0) return 0;
 
-        int minutes=-1;
-        vector<std::pair<int,int>> directions = {{-1,0}, {0,-1}, {0, 1}, {1, 0}};
+        vector<vector<int>> directions = {{-1,0}, {1,0}, {0,-1}, {0,1}}; // {up, down, left, right}
 
         while(!rottenOranges.empty()){
             int level = rottenOranges.size();
 
-            for(int i=0; i<level; i++){
-                auto [row, col] = rottenOranges.front();
+            for(int l=0; l<level; l++){
+                pair<int,int> rottenOrange = rottenOranges.front();
                 rottenOranges.pop();
 
-                for(auto [i, j] : directions){
-                    int newRow = i + row;
-                    int newCol = j + col;
+                for(auto dir: directions){
+                    int i = rottenOrange.first + dir[0];
+                    int j = rottenOrange.second + dir[1];
 
-                    if(newRow>=0 && newRow < rows && newCol>=0 && newCol< cols && grid[newRow][newCol]==1){
-                        grid[newRow][newCol] = 2;
+                    if(i>=0 && i<rows && j>=0 && j< cols && grid[i][j]==1){
+                        grid[i][j] = 2;
+                        rottenOranges.push({i,j});
                         freshOranges--;
-                        rottenOranges.push({newRow,newCol});
                     }
                 }
             }
-            minutes++;
+            time++;
         }
 
-        return freshOranges==0 ? minutes : -1;
+        return freshOranges == 0 ? time : -1;
     }
 };
