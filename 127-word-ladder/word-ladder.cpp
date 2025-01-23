@@ -1,7 +1,7 @@
 class Solution {
 public:
     int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
-        std::set<string> wordSet;
+        std::unordered_set<string> wordSet;
 
         // strore wordList in a set
         for(string st: wordList) wordSet.insert(st);
