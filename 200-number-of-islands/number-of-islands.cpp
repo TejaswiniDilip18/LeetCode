@@ -15,6 +15,7 @@ public:
         for(size_t i=0; i<rows; i++){
             for(size_t j=0; j<cols; j++){
                 if(grid[i][j]=='1'){
+                    islandCount++;
                     neighbors.push({i,j});
                     grid[i][j] = '0'; // visited
                 
@@ -38,7 +39,6 @@ public:
                             }
                         }
                     }
-                    islandCount++;
                 }
             }
         }
