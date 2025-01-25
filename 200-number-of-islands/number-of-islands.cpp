@@ -8,15 +8,15 @@ public:
 
         queue<pair<int,int>> neighbors;
 
-        vector<vector<int>> visited(rows, vector<int>(cols, 0));
+        // vector<vector<int>> visited(rows, vector<int>(cols, 0));
 
         vector<vector<int>> dirs = {{-1,0}, {1,0}, {0,-1}, {0,1}};
 
         for(size_t i=0; i<rows; i++){
             for(size_t j=0; j<cols; j++){
-                if(grid[i][j]=='1' && visited[i][j] != 1){
+                if(grid[i][j]=='1'){
                     neighbors.push({i,j});
-                    visited[i][j] = 1;
+                    grid[i][j] = '0'; // visited
                 
                     while(!neighbors.empty()){
                         int level = neighbors.size();
@@ -30,8 +30,8 @@ public:
                                 int c = curr.second + dir[1];
 
                                 if(r>=0 && r<rows && c>=0 && c<cols){
-                                    if(grid[r][c] == '1' && visited[r][c] != 1){
-                                        visited[r][c] = 1;
+                                    if(grid[r][c] == '1'){
+                                        grid[r][c] = '0'; // visited
                                         neighbors.push({r,c});
                                     }
                                 }
