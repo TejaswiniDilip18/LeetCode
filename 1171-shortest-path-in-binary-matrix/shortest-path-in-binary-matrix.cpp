@@ -35,6 +35,6 @@ public:
             }
         }
 
-        return dist[rows-1][cols-1]==INT_MAX ? -1: dist[rows-1][cols-1];
+        return -1;
     }
 };
