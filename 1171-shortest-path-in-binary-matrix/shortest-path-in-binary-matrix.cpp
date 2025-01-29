@@ -22,6 +22,8 @@ public:
             auto [row, col] = q.front().second;
             q.pop();
 
+            if(row==rows-1 && col==cols-1) return dist[row][col];
+
             for(auto dir: dirs){
                 int i = row + dir[0];
                 int j = col + dir[1];
