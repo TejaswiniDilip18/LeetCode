@@ -10,11 +10,12 @@ public:
 
         queue<pair<int, pair<int,int>>> q;
 
-        if(grid[0][0]==0){
-            dist[0][0] = 1;
-            q.push({dist[0][0], {0,0}});
+        if(grid[0][0]==1 || grid[rows-1][cols-1] == 1){
+            return -1;
         }
-        else return -1;
+
+        dist[0][0] = 1;
+        q.push({dist[0][0], {0,0}});
 
         while(!q.empty()){
             int currDist = q.front().first;
