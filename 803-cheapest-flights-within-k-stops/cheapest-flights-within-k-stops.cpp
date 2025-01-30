@@ -9,17 +9,17 @@ public:
         }
 
         vector<int> price(n, INT_MAX);
-        queue<vector<int>> q;
+        queue<pair<int, pair<int,int>>> q;
 
         price[src] = 0;
-        q.push({0, src, price[src]}); // {stops, src, price}
+        q.push({0, {src, price[src]}}); // {stops, {src, price}}
 
         while(!q.empty()){
             auto flight = q.front();
             q.pop();
-            int stops = flight[0];
-            int currSrc = flight[1];
-            int currPrice = flight[2];
+            int stops = flight.first;
+            int currSrc = flight.second.first;
+            int currPrice = flight.second.second;
 
             if(stops>k) continue;
            
@@ -29,7 +29,7 @@ public:
                 
                 if(stops<=k && price[adjSrc] > (currPrice + adjPrice)){
                     price[adjSrc] = currPrice + adjPrice;
-                    q.push({stops+1, adjSrc, price[adjSrc]});
+                    q.push({stops+1, {adjSrc, price[adjSrc]}});
                 }
             }
         }
