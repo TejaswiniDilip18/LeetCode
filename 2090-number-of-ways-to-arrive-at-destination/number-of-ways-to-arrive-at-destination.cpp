@@ -16,7 +16,7 @@ public:
         pq.push({0, 0});
         // ways[0]=1;
         
-        int mod = (long int)(1e9 + 7);
+        int mod = 1e9 + 7;
         
         while(!pq.empty()){
             long int d = pq.top().first;
