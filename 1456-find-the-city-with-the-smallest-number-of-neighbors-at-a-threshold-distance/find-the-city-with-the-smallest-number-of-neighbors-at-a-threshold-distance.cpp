@@ -33,12 +33,9 @@ public:
                     count++;
                 }
             }
-            if(count != 0 && count < neighborsMin){
+            if(count != 0 && count <= neighborsMin){
                 neighborsMin = count;
                 city = i;
-            }
-            else if(count == neighborsMin){
-                city = max(city, i);
             }
         }
         
