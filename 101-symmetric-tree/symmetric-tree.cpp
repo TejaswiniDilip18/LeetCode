@@ -12,13 +12,16 @@
 class Solution {
 public:
     bool dfs(TreeNode* root1, TreeNode* root2){
-        if(!root1 || !root2){
-            return root1==root2;
-        }
-        return (root1->val == root2->val) && dfs(root1->left, root2->right) && dfs(root1->right, root2->left); 
-    }
+        if(!root1 && !root2) return true;
 
-    bool isSymmetric(TreeNode* root) {
-        return dfs(root, root);
+        if(!root1 || !root2) return root1==root2;
+
+        if(root1->val == root2->val){
+            return dfs(root1->left, root2->right) && dfs(root1->right, root2->left);
+        }
+        return false;
+    }
+    bool isSymmetric(TreeNode* root) {       
+        return dfs(root->left, root->right);
     }
 };
