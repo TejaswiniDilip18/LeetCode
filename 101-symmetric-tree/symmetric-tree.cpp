@@ -12,7 +12,7 @@
 class Solution {
 public:
     bool dfs(TreeNode* root1, TreeNode* root2){
-        if(!root1 && !root2) return true;
+        // if(!root1 && !root2) return true;
 
         if(!root1 || !root2) return root1==root2;
 
