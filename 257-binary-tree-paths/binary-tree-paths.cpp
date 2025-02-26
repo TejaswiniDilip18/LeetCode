@@ -14,12 +14,13 @@ public:
     void dfs(TreeNode* root, vector<string>& result, string temp){
         if(!root) return;
         temp += to_string(root->val);
+
         if(!root->left && !root->right) result.push_back(temp);
-        if(root->left || root->right){
+        else{
             temp += "->";
+            if(root->left) dfs(root->left, result, temp);
+            if(root->right) dfs(root->right, result, temp);
         }
-        if(root->left) dfs(root->left, result, temp);
-        if(root->right) dfs(root->right, result, temp);
     }
 
     vector<string> binaryTreePaths(TreeNode* root) {
