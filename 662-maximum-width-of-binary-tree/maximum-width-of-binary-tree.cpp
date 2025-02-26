@@ -61,7 +61,7 @@ public:
     int widthOfBinaryTree(TreeNode* root) {
         if(!root) return 0;
 
-        queue<pair<TreeNode*, long>> q;
+        queue<pair<TreeNode*, int>> q;
 
         q.push({root, 0});
 
@@ -69,9 +69,8 @@ public:
 
         while(!q.empty()){
             int level = q.size();
-            vector<pair<int,long>> midResult;
-            long first = 0, last = 0;
-            long minIdx = q.front().second;
+            int first = 0, last = 0;
+            int minIdx = q.front().second;
 
             for(int i=0; i<level; i++){
                 TreeNode* currNode = q.front().first;
@@ -82,13 +81,13 @@ public:
                 if(i==0) first = idx;
                 if(i==level-1) last = idx;
 
-                long leftIdx = (2*idx);
-                long rightIdx = (2*idx) + 1;
+                int leftIdx = (2*idx);
+                int rightIdx = (2*idx) + 1;
 
                 if(currNode->left) q.push({currNode->left, leftIdx});
                 if(currNode->right) q.push({currNode->right, rightIdx});
             }
-            maxWidth = max(maxWidth, static_cast<int>(last-first+1));       
+            maxWidth = max(maxWidth, (last-first+1));       
         }
 
         return maxWidth;
