@@ -61,7 +61,6 @@ public:
     int widthOfBinaryTree(TreeNode* root) {
         if(!root) return 0;
 
-        // vector<vector<pair<int,long>>> result;
         queue<pair<TreeNode*, long>> q;
 
         q.push({root, 0});
