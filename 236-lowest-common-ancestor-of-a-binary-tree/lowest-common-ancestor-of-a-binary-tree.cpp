@@ -18,7 +18,7 @@ public:
         if(!root) return nullptr;
 
         if(root == p || root == q) return root;
-        if(!root->left && !root->right) return nullptr;
+        // if(!root->left && !root->right) return nullptr;
 
         TreeNode* left = lowestCommonAncestor(root->left, p, q);
         TreeNode* right = lowestCommonAncestor(root->right, p, q);
