@@ -34,10 +34,12 @@ class Solution {
 public:
     void dfs(TreeNode*& root, int& k, int& smallest){
         if(!root) return;
-        if(root->left) dfs(root->left, k, smallest);
+        dfs(root->left, k, smallest);
         k--;
-        if(k==0) smallest = root->val;
-        if(root->right) dfs(root->right, k, smallest);
+        if(k==0){
+            smallest = root->val;
+        }
+        dfs(root->right, k, smallest);
     }
     int kthSmallest(TreeNode* root, int k) {
         int smallest = 0;
