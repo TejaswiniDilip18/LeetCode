@@ -9,11 +9,6 @@
  */
 class Solution {
 public:
-    // void dfs(TreeNode* root, TreeNode* p, TreeNode* q, TreeNode* ancestor){
-    //     // if it is a leaf node, check if it's p or q 
-    //     // if yes, return the node else return null
-
-    // }
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
         if(!root) return nullptr;
 
