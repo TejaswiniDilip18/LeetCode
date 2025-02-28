@@ -33,7 +33,7 @@ public:
 class Solution {
 public:
     void dfs(TreeNode*& root, int& k, int& smallest){
-        if(!root) return;
+        if(!root || k==0) return;
         dfs(root->left, k, smallest);
         k--;
         if(k==0){
