@@ -11,22 +11,16 @@
  */
 class Solution {
 public:
-    void inOrder(TreeNode* root, int& k, int& smallest){
+    void dfs(TreeNode*& root, int& k, priority_queue<int>& pq){
         if(!root) return;
-        
-        if(root->left) inOrder(root->left, k, smallest);
-        k--;
-        if(k==0){
-            smallest = root->val;
-            return;
-        }
-        if(root->right) inOrder(root->right, k, smallest);
+        pq.push(root->val);
+        if(pq.size() > k) pq.pop();
+        dfs(root->left, k, pq);
+        dfs(root->right, k, pq);
     }
     int kthSmallest(TreeNode* root, int k) {
-        int smallest;
-
-        inOrder(root, k, smallest);
-
-        return smallest;
+        priority_queue<int> pq;
+        dfs(root, k, pq);
+        return pq.top();
     }
 };
