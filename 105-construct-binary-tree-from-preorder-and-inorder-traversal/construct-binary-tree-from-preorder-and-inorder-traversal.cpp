@@ -11,17 +11,16 @@
  */
 class Solution {
 public:
-    TreeNode* constructTree(vector<int>& preorder, map<int,int>& mp, int preStart, int preEnd, int inStart, int inEnd){
+    int startIdx = 0;
+    TreeNode* constructTree(vector<int>& preorder, map<int,int>& mp, int preStart, int preEnd){
+        if(preStart > preEnd) return nullptr;
 
-        if(preStart > preEnd || inStart > inEnd) return nullptr;
-
-        TreeNode* root = new TreeNode(preorder[preStart]);
+        TreeNode* root = new TreeNode(preorder[startIdx++]);
 
         int idx = mp[root->val];
-        int leftSize = idx - inStart;
         
-        root->left = constructTree(preorder, mp, preStart+1, preStart+leftSize, inStart, idx-1);
-        root->right = constructTree(preorder, mp, preStart+leftSize+1, preEnd, idx+1, inEnd);
+        root->left = constructTree(preorder, mp, preStart, idx-1);
+        root->right = constructTree(preorder, mp, idx+1, preEnd);
 
         return root;
     }
@@ -34,6 +33,6 @@ public:
             mp[inorder[i]] = i;
         }
 
-        return constructTree(preorder, mp, 0, preorder.size()-1, 0, inorder.size()-1);
+        return constructTree(preorder, mp, 0, inorder.size()-1);
     }
 };
