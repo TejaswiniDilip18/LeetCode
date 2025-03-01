@@ -1,18 +1,17 @@
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
-        std::unordered_map<int, int> nums_map;
+        vector<int> result;
+        unordered_map<int,int> mp;
 
         for(int i=0; i<nums.size(); i++){
-            int sol = target - nums[i];
-
-            if(nums_map.find(sol) != nums_map.end()){
-                return {nums_map[sol], i};
+            if(mp.find(nums[i]) != mp.end()){
+                result.push_back(i);
+                result.push_back(mp[nums[i]]);
+                return result;
             }
-            else{
-                nums_map[nums[i]] = i;
-            }
+            else mp[target - nums[i]] = i;
         }
-        return {-1, -1};          
+        return result;
     }
 };
