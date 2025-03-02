@@ -1,27 +1,26 @@
 class Solution {
 public:
     bool isValidSudoku(vector<vector<char>>& board) {
-        int size = board.size();
-        std::unordered_set<char> row[size];
-        std::unordered_set<char> col[size];
-        std::unordered_set<char> mat[size];
-        bool is_valid;
+        vector<unordered_set<char>> rows(9);
+        vector<unordered_set<char>> cols(9);
+        vector<unordered_set<char>> subBox(9);
 
-        for(int i=0; i< size; i++){
-            for(int j=0; j<size; j++){
-                if(board[i][j]== '.') continue; //skip '.'
+        for(int i=0; i<9; i++){
+            for(int j=0; j<9; j++){
+                if(board[i][j]=='.') continue;
 
-                if(row[i].count(board[i][j])) return false;
-                row[i].insert(board[i][j]);
+                if(rows[i].count(board[i][j])) return false;
+                rows[i].insert(board[i][j]);
 
-                if(col[j].count(board[i][j])) return false;
-                col[j].insert(board[i][j]);
+                if(cols[j].count(board[i][j])) return false;
+                cols[j].insert(board[i][j]);
 
-                int index = (i/3)*3 + (j/3);
-                if(mat[index].count(board[i][j])) return false;
-                mat[index].insert(board[i][j]);
+                int idx = (i/3)*3 + (j/3);
+                if(subBox[idx].count(board[i][j])) return false;
+                subBox[idx].insert(board[i][j]);
             }
         }
+
         return true;
     }
 };
