@@ -21,8 +21,7 @@ public:
     }
     
     int getMin() {
-        auto [_, min] = st.top();
-        return min;
+        return st.top().second;
     }
 };
 
