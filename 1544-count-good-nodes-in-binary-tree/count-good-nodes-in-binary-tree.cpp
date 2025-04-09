@@ -13,16 +13,19 @@ class Solution {
 public:
     void dfs(TreeNode* root, int& goodNodeCount, int currMax){
         if(!root) return;
-        currMax = max(currMax, root->val);
-        dfs(root->left, goodNodeCount, currMax);
-        if(root->val >= currMax) goodNodeCount++;
+        
+        if(root->val >= currMax){
+            goodNodeCount++;
+            currMax = root->val;
+        }
+        dfs(root->left, goodNodeCount, currMax);        
         dfs(root->right, goodNodeCount, currMax);
 
         return;
     }
     int goodNodes(TreeNode* root) {
         if(!root) return 0;
-        int goodNodeCount = 0, currMax = INT_MIN;
+        int goodNodeCount = 0, currMax = root->val;
         dfs(root, goodNodeCount, currMax);
         return goodNodeCount;
     }
