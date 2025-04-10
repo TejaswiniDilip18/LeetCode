@@ -33,8 +33,9 @@ public:
 class Solution {
 public:
     void dfs(TreeNode*& root, int& k, int& smallest){
-        if(!root || k==0) return;
+        if(!root) return;
         dfs(root->left, k, smallest);
+        // if(k==0) return;
         k--;
         if(k==0){
             smallest = root->val;
