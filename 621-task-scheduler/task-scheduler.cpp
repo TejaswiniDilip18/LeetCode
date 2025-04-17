@@ -8,27 +8,27 @@ public:
             hashMap[ch - 'A']++;
         }
 
-        priority_queue<pair<int,int>> maxHeap; // {freq, char}
+        priority_queue<int> maxHeap; // {freq, char}
         for(int i=0; i<26; i++){
             if(hashMap[i] !=0) 
-                maxHeap.push({hashMap[i], i});
+                maxHeap.push(hashMap[i]);
         }
 
         while(!maxHeap.empty()){
-            vector<pair<int,int>> temp;
+            vector<int> temp;
             int cycle = 0;
 
             for(int i=0; i<=n; i++){
                 if(!maxHeap.empty()){
-                    auto [freq, num] = maxHeap.top();
+                    int freq = maxHeap.top();
                     maxHeap.pop();
                     freq--;
-                    if(freq > 0) temp.push_back({freq, num});
+                    if(freq > 0) temp.push_back(freq);
                     cycle++;
                 }                               
             }
 
-            for(auto& t: temp){
+            for(int& t: temp){
                 maxHeap.push(t);
             }
 
