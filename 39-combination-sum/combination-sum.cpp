@@ -1,10 +1,11 @@
 class Solution {
 public:
-    void findSum(vector<int>& candidates, int target, int idx, vector<int> temp, vector<vector<int>>& result){
-        if(idx==candidates.size()){
-            if(target==0) result.push_back(temp);
+    void findSum(const vector<int>& candidates, int target, int idx, vector<int>& temp, vector<vector<int>>& result){
+        if(target==0){
+            result.push_back(temp);
             return;
         }
+        if(idx==candidates.size()) return;
 
         if(target >= candidates[idx])
         {
