@@ -1,24 +1,20 @@
 class Solution {
-private:
-    void findPermutations(vector<int>& nums, vector<vector<int>>& result, int start, int& n){
-        if(start == n){
+public:
+    void findPermutations(vector<int>& nums, int idx, vector<vector<int>>& result){
+        if(idx == nums.size()){
             result.push_back(nums);
             return;
         }
 
-        for(size_t i=start; i<n; i++){
-            swap(nums[start], nums[i]);
-            findPermutations(nums, result, start+1, n);
-            swap(nums[start], nums[i]);
+        for(int i=idx; i<nums.size(); i++){
+            swap(nums[idx], nums[i]);
+            findPermutations(nums, idx+1, result);
+            swap(nums[idx], nums[i]);
         }
     }
-public:
     vector<vector<int>> permute(vector<int>& nums) {
-        int n = nums.size();
         vector<vector<int>> result;
-        int start = 0;
-        findPermutations(nums, result, start, n);
-
+        findPermutations(nums, 0, result);
         return result;
     }
 };
