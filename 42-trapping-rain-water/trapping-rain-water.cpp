@@ -33,14 +33,14 @@ public:
 
         while(l<r){
             if(height[l] <= height[r]){
-                if(leftMax > height[l]) vol += leftMax - height[l];
-                else leftMax = height[l];
                 l++;
+                leftMax = max(leftMax, height[l]);
+                vol += leftMax - height[l];
             }
             else{
-                if(rightMax > height[r]) vol += rightMax - height[r];
-                else rightMax = height[r];
                 r--;
+                rightMax = max(rightMax, height[r]);
+                vol += rightMax - height[r];
             }
         }
 
