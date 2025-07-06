@@ -1,6 +1,6 @@
 class Solution:
     def carFleet(self, target: int, position: List[int], speed: List[int]) -> int:
-        pair = sorted([[p, s] for p,s in zip(position, speed)], reverse=True)
+        pair = sorted(zip(position, speed), reverse=True)
         stack = []
 
         for [p,s] in pair:
