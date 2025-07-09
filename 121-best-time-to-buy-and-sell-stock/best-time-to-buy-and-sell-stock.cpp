@@ -1,34 +1,17 @@
 class Solution {
 public:
-
     int maxProfit(vector<int>& prices) {
-        int buy = prices[0];
-        int profit = 0;
+        int l = 0, r = 0;
+        int profit = INT_MIN;
 
-        for(int& p: prices){
-            if(p < buy){
-                buy = p;
+        while(r < prices.size()){
+            profit = max(profit, prices[r]-prices[l]);
+            if(prices[l] > prices[r]){
+                l = r;
+                r++;
             }
-            else if((p - buy) > profit){
-                profit = p - buy;
-            }
+            else r++;
         }
         return profit;
     }
-
-    // int maxProfit(vector<int>& prices) {
-    //     int left = 0;
-    //     int right = 0;
-    //     int profit = 0;
-
-    //     while(right < prices.size()){
-    //         profit = max(profit, (prices[right]-prices[left]));
-
-    //         if(prices[left] > prices[right] && right > left){
-    //             left = right;
-    //         }
-    //         right++;
-    //     }
-    //     return profit;
-    // }
 };
